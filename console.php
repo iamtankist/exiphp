@@ -11,20 +11,20 @@ use Symfony\Component\Finder\Finder;
 
 
 /////////////////////////////////////////////
-//$inputDirs    = [
-//    '/volume1/Family/preview'
-//];
-//$outputDir    = '/volume1/photo';
-//$duplicateDir = '/volume1/Family/duplicates';
-/////////////////////////////////////////////
-
-
-/////////////////////////////////////////////
 $inputDirs    = [
-    '/Users/armen/Desktop/input'
+    '/volume1/Family/preview'
 ];
-$outputDir    = '/Users/armen/Desktop/output';
-$duplicateDir = '/Users/armen/Desktop/duplicates';
+$outputDir    = '/volume1/photo';
+$duplicateDir = '/volume1/Family/duplicates';
+/////////////////////////////////////////////
+
+
+/////////////////////////////////////////////
+//$inputDirs    = [
+//    '/Users/armen/Desktop/input'
+//];
+//$outputDir    = '/Users/armen/Desktop/output';
+//$duplicateDir = '/Users/armen/Desktop/duplicates';
 /////////////////////////////////////////////
 
 
