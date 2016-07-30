@@ -12,9 +12,9 @@ use PHPExiftool\Driver\Value\ValueInterface;
 
 /////////////////////////////////////////////
 $inputDirs    = [
-    '/volume1/Family/testinput'
+    '/volume1/Family/preview'
 ];
-$outputDir    = '/volume1/photo/test';
+$outputDir    = '/volume1/photo';
 $duplicateDir = '/volume1/Family/duplicates';
 /////////////////////////////////////////////
 

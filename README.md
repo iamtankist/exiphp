@@ -7,6 +7,7 @@ This project was written in 15 minutes and used once to move huge pile of photos
 git clone git@github.com:iamtankist/exiphp.git
 cd exiphp
 composer install
+chmod a+x vendor/phpexiftool/exiftool/exiftool
 # modify the input/output directories
 php console.php
 ```
