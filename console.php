@@ -8,18 +8,25 @@ use Monolog\Logger;
 use PHPExiftool\Reader;
 use PHPExiftool\Driver\Value\ValueInterface;
 
-$logger = new Logger('exiftool');
 
+
+/////////////////////////////////////////////
+$inputDirs    = [
+    '/volume1/Family/testinput'
+];
+$outputDir    = '/volume1/photo/test';
+$duplicateDir = '/volume1/Family/duplicates';
+/////////////////////////////////////////////
+
+
+
+$logger = new Logger('exiftool');
 $reader = Reader::create($logger);
 
 $reader
-    ->in([
-        '/Users/armen/Desktop/2016'
-    ])
+    ->in($inputDirs)
     ->followSymLinks();
 
-$outputDir    = '/Users/armen/Desktop/sorted';
-$duplicateDir = '/Users/armen/Desktop/duplicates';
 $fs           = new \Symfony\Component\Filesystem\Filesystem();
 
 /** @var \PHPExiftool\FileEntity $metaDatas */
