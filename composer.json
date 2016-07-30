@@ -1,0 +1,11 @@
+{
+  "autoload": {
+    "psr-4": {
+      "": "src/"
+    }
+  },
+  "require": {
+    "phpexiftool/phpexiftool": "^0.4.1",
+    "symfony/filesystem": "^3.1"
+  }
+}
