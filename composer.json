@@ -6,6 +6,7 @@
   },
   "require": {
     "phpexiftool/phpexiftool": "^0.4.1",
-    "symfony/filesystem": "^3.1"
+    "symfony/filesystem": "^3.1",
+    "symfony/finder": "^3.1"
   }
 }

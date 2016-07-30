@@ -7,35 +7,48 @@ ini_set('memory_limit', '2G');
 use Monolog\Logger;
 use PHPExiftool\Reader;
 use PHPExiftool\Driver\Value\ValueInterface;
+use Symfony\Component\Finder\Finder;
 
+
+/////////////////////////////////////////////
+//$inputDirs    = [
+//    '/volume1/Family/preview'
+//];
+//$outputDir    = '/volume1/photo';
+//$duplicateDir = '/volume1/Family/duplicates';
+/////////////////////////////////////////////
 
 
 /////////////////////////////////////////////
 $inputDirs    = [
-    '/volume1/Family/preview'
+    '/Users/armen/Desktop/input'
 ];
-$outputDir    = '/volume1/photo';
-$duplicateDir = '/volume1/Family/duplicates';
+$outputDir    = '/Users/armen/Desktop/output';
+$duplicateDir = '/Users/armen/Desktop/duplicates';
 /////////////////////////////////////////////
 
 
 
+$finder = new Finder();
+$finder->files()->in($inputDirs);
+
+$fs = new \Symfony\Component\Filesystem\Filesystem();
+
 $logger = new Logger('exiftool');
-$reader = Reader::create($logger);
+$logger->pushHandler(new \Monolog\Handler\NullHandler(Logger::ERROR));
 
-$reader
-    ->in($inputDirs)
-    ->followSymLinks();
+foreach ($finder as $file) {
 
-$fs           = new \Symfony\Component\Filesystem\Filesystem();
+    $reader = Reader::create($logger);
 
-/** @var \PHPExiftool\FileEntity $metaDatas */
-foreach ($reader as $metaDatas) {
+    $metaDatas = $reader->files($file->getPathName())->first();
+
 
     $pathinfo        = pathinfo($metaDatas->getFile());
     $filename        = $pathinfo['basename'];
     $filenamePartial = $pathinfo['filename'];
     $ext             = $pathinfo['extension'];
+
 
     $createdDate = [];
     foreach ($metaDatas as $metadata) {
@@ -112,6 +125,4 @@ foreach ($reader as $metaDatas) {
         }
         exit;
     }
-
-
 }
