@@ -16,6 +16,7 @@ $inputDirs    = [
 ];
 $outputDir    = '/volume1/photo';
 $duplicateDir = '/volume1/Family/duplicates';
+$excludeDirs  = ['@eaDir'];
 /////////////////////////////////////////////
 
 
@@ -25,12 +26,15 @@ $duplicateDir = '/volume1/Family/duplicates';
 //];
 //$outputDir    = '/Users/armen/Desktop/output';
 //$duplicateDir = '/Users/armen/Desktop/duplicates';
+//$excludeDirs  = [];
 /////////////////////////////////////////////
-
 
 
 $finder = new Finder();
 $finder->files()->in($inputDirs);
+foreach ($excludeDirs as $excludeDir) {
+    $finder->exclude($excludeDir);
+}
 
 $fs = new \Symfony\Component\Filesystem\Filesystem();
 

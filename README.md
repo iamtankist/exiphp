@@ -11,3 +11,9 @@ chmod a+x vendor/phpexiftool/exiftool/exiftool
 # modify the input/output directories
 php console.php
 ```
+
+
+TODO:
+cd /volume1/Family/preview/
+rm -rf \@eaDir
+
