@@ -16,6 +16,7 @@ $inputDirs    = [
 ];
 $outputDir    = '/volume1/photo';
 $duplicateDir = '/volume1/Family/duplicates';
+$brokenDir = '/volume1/Family/broken';
 $excludeDirs  = ['@eaDir'];
 /////////////////////////////////////////////
 
@@ -96,22 +97,32 @@ foreach ($finder as $file) {
     }
 
     if ($createdDateValue) {
-
         $date           = \DateTime::createFromFormat('Y-m-d His', substr($createdDateValue, 0, -3));
-        $outputFilePath = $outputDir . '/' . $date->format('Y/Y-m') . '/' . $createdDateValue . '.' . $ext;
-        if (file_exists($outputFilePath)) {
-            $duplicateFilePath = $duplicateDir . '/' . $date->format('Y/Y-m') . '/' . $createdDateValue . '-' . substr(md5(uniqid(rand(), true)), 0, 6) . '.' . $ext;
-            $fs->copy($metaDatas->getFile(), $duplicateFilePath);
+        if(!$date instanceof \DateTime) {
+            $brokenFilePath = $brokenDir . '/' . $date->format('Y/Y-m') . '/' . $filename . '-' . substr(md5(uniqid(rand(), true)), 0, 6) . '.' . $ext;
+            $fs->copy($metaDatas->getFile(), $brokenFilePath);
             $fs->remove($metaDatas->getFile());
-            echo 'Duplicate: ' . $filename . ' => ' . pathinfo($duplicateFilePath, PATHINFO_BASENAME) . PHP_EOL;
+            echo 'Broken: ' . $filename . ' => ' . pathinfo($brokenFilePath, PATHINFO_BASENAME) . PHP_EOL;
         } else {
-            $fs->copy($metaDatas->getFile(), $outputFilePath);
-            $fs->remove($metaDatas->getFile());
-            echo 'Rename: ' . $filename . ' => ' . pathinfo($outputFilePath, PATHINFO_BASENAME) . PHP_EOL;
+            $outputFilePath = $outputDir . '/' . $date->format('Y/Y-m') . '/' . $createdDateValue . '.' . $ext;
+            if (file_exists($outputFilePath)) {
+                $duplicateFilePath = $duplicateDir . '/' . $date->format('Y/Y-m') . '/' . $createdDateValue . '-' . substr(md5(uniqid(rand(), true)), 0, 6) . '.' . $ext;
+                $fs->copy($metaDatas->getFile(), $duplicateFilePath);
+                $fs->remove($metaDatas->getFile());
+                echo 'Duplicate: ' . $filename . ' => ' . pathinfo($duplicateFilePath, PATHINFO_BASENAME) . PHP_EOL;
+            } else {
+                $fs->copy($metaDatas->getFile(), $outputFilePath);
+                $fs->remove($metaDatas->getFile());
+                echo 'Rename: ' . $filename . ' => ' . pathinfo($outputFilePath, PATHINFO_BASENAME) . PHP_EOL;
+            }
         }
-
     } else {
         echo 'Not Found ' . $filename . PHP_EOL;
+        $brokenFilePath = $brokenDir . '/' . $date->format('Y/Y-m') . '/' . $filename . '-' . substr(md5(uniqid(rand(), true)), 0, 6) . '.' . $ext;
+        $fs->copy($metaDatas->getFile(), $brokenFilePath);
+        $fs->remove($metaDatas->getFile());
+        echo 'Broken: ' . $filename . ' => ' . pathinfo($brokenFilePath, PATHINFO_BASENAME) . PHP_EOL;
+
         foreach ($metaDatas as $metadata) {
             if ((string)$metadata->getTag() != 'Composite:ThumbnailImage') {
                 var_dump((string)$metadata->getTag() . '::' . $metadata->getValue()->asString());
