@@ -99,7 +99,7 @@ foreach ($finder as $file) {
     if ($createdDateValue) {
         $date           = \DateTime::createFromFormat('Y-m-d His', substr($createdDateValue, 0, -3));
         if(!$date instanceof \DateTime) {
-            $brokenFilePath = $brokenDir . '/' . $date->format('Y/Y-m') . '/' . $filename . '-' . substr(md5(uniqid(rand(), true)), 0, 6) . '.' . $ext;
+            $brokenFilePath = $brokenDir . '/' . $filename . '-' . substr(md5(uniqid(rand(), true)), 0, 6) . '.' . $ext;
             $fs->copy($metaDatas->getFile(), $brokenFilePath);
             $fs->remove($metaDatas->getFile());
             echo 'Broken: ' . $filename . ' => ' . pathinfo($brokenFilePath, PATHINFO_BASENAME) . PHP_EOL;
