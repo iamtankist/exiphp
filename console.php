@@ -11,23 +11,23 @@ use Symfony\Component\Finder\Finder;
 
 
 /////////////////////////////////////////////
-$inputDirs    = [
-    '/volume1/Family/preview'
-];
-$outputDir    = '/volume1/photo';
-$duplicateDir = '/volume1/Family/duplicates';
-$brokenDir = '/volume1/Family/broken';
-$excludeDirs  = ['@eaDir'];
-/////////////////////////////////////////////
-
-
-/////////////////////////////////////////////
 //$inputDirs    = [
-//    '/Users/armen/Desktop/input'
+//    '/volume1/Family/preview'
 //];
-//$outputDir    = '/Users/armen/Desktop/output';
-//$duplicateDir = '/Users/armen/Desktop/duplicates';
-//$excludeDirs  = [];
+//$outputDir    = '/volume1/photo';
+//$duplicateDir = '/volume1/Family/duplicates';
+//$brokenDir = '/volume1/Family/broken';
+//$excludeDirs  = ['@eaDir'];
+/////////////////////////////////////////////
+
+
+/////////////////////////////////////////////
+$inputDirs    = [
+    '/Users/armen/Desktop/preview'
+];
+$outputDir    = '/Users/armen/Desktop/output';
+$duplicateDir = '/Users/armen/Desktop/duplicates';
+$excludeDirs  = [];
 /////////////////////////////////////////////
 
 
