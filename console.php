@@ -26,6 +26,7 @@ $inputDirs    = [
     '/Users/armen/Desktop/preview'
 ];
 $outputDir    = '/Users/armen/Desktop/output';
+$brokenDir    = '/Users/armen/Desktop/broken';
 $duplicateDir = '/Users/armen/Desktop/duplicates';
 $excludeDirs  = [];
 /////////////////////////////////////////////
